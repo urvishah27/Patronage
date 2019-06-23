@@ -1,0 +1,171 @@
+body{
+	background: #f1f1f3;
+}
+
+#header{
+	background-color: #26c6da;
+	padding: 0;
+	margin: 0;
+}
+
+#mySidenav1 a {
+  position: fixed; /* Position them relative to the browser window */
+  left: -80px; /* Position them outside of the screen */
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15px padding */
+  padding-right: 10px;
+  text-decoration: none; /* Remove underline */
+  font-size: 20px; /* Increase font size */
+  color: white; /* text color */
+  border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+}
+
+#mySidenav1 a:hover {
+  left: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+#mySidenav2 a {
+  position: fixed; /* Position them relative to the browser window */
+  right: -80px; /* Position them outside of the screen */
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15px padding */
+  padding-left: 10px;
+  width: 105px;
+  text-decoration: none; /* Remove underline */
+  font-size: 20px; /* Increase font size */
+  color: white; /* text color */
+  border-radius: 5px 0 0 5px; /* Rounded corners on the top right and bottom right side */
+}
+
+#mySidenav2 a:hover {
+  right: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+
+/* The about link: 20px from the top with a green background */
+#tweets {
+  top: 20px;
+  background-color: black;
+}
+
+#blogs {
+  top: 20px;
+  background-color: black;
+}
+
+div:not(.container){
+	padding: 20px;
+	margin:20px 0;
+}
+
+.shown{
+	background: white;
+  border-radius: 10px;
+  box-shadow: #00000063 4px 4px 13px 0px;
+}
+
+iframe{
+	border: 1px solid black;
+}
+
+.Positive{
+  color: #09c909;
+  border-color: #09c909;
+}
+
+.Negative{
+  color: #c90909;
+  border-color: #c90909;
+}
+
+.Neutral{
+  color: #5c5959;
+  border-color: #5c5959s;
+}
+
+.btn-lg{
+	margin-bottom: 10px;
+	width:131px;
+	cursor: pointer;
+}
+
+.btn-lg:hover{
+  box-shadow: #00000063 4px 4px 13px 0px;
+}
+
+.city{
+	margin:0;
+}
+
+.filters div{
+	border-radius: 0;
+}
+
+.social_clickable{
+	cursor: pointer;
+  }
+  
+.div-inside:hover{
+  box-shadow: #00000063 4px 4px 13px 0px;
+}
+
+.div-inside{
+	border-radius: 20px;
+	background:#26c6da;
+}
+
+.social-filter i{
+	font-size: 20px;
+}
+
+.post .fa-user{
+	border: solid black 2px;
+	border-radius: 30px;
+	padding: 10px;
+}
+
+.post span{
+	margin-left: 60px;
+}
+
+.post_sub{
+	color:#9393A7;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #26c6da;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #26c6da;
+  cursor: pointer;
+}

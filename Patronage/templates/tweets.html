@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patronage</title>
+	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Font Awesome css-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" href="static/bootstrap/bootstrap.min.css">
+    <!-- Fonts link -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <!-- Chart script -->
+    <script type="text/javascript" src="static/bootstrap/plotly-latest.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/custom/style.css">
+</head>
+<body>
+	<div id="header">
+		<span id="mySidenav1" class="sidenav">
+  			<a href="/" id="tweets">Tweets&nbsp;&nbsp;<i class="fas fa-angle-right"></i></a>
+		</span>
+		<center>
+			<img src="https://www.freelogoservices.com/api/main/images/1j+ojlxCOMkX9WypeBe43D6ki...KIpB9MnhfNwWJqZ1AYsU0zznF60+Q39...Atb0NZoBRejhUKds86iSNyUoc=" class="logo">
+		</center>
+		<span id="mySidenav2" class="sidenav">
+  			<a href="/blog" id="blogs"><i class="fas fa-angle-left"></i>&nbsp;&nbsp;Blogs</a>
+		</span>  				
+		
+		<!-- <h1 style="display: inline; margin-left: 30px; text-align: center; font-family: 'Pacifico', cursive;">Analyzing your Way through Life</h1> -->
+	</div>
+	<div class="container">
+		<div class="line-graph">
+				<h2>Effect of Budget 2019</h2>
+			<div class="chart-bjp shown">
+				<iframe src="/bjp-chart" style="height:480px; width:100%"></iframe>
+			</div>
+			<div class="chart-congress shown">
+				<iframe src="/ncp-chart" style="height:480px; width:100%"></iframe>
+			</div>
+		</div>
+		<div class="pie-graph shown">
+			<div class="col-xs-12 city">
+				<center>
+				<h3>Major Metropolitan Cities</h3>
+  				<button type="button" class="btn btn-primary btn-lg" onclick="mumbaiChange()">Mumbai</button>
+  				<button type="button" class="btn btn-primary btn-lg" onclick="delhiChange()">Delhi</button>
+  				<button type="button" class="btn btn-primary btn-lg" onclick="kolkataChange()">Kolkata</button>
+  				<button type="button" class="btn btn-primary btn-lg" onclick="bengaluruChange()">Bengaluru</button>
+  				<button type="button" class="btn btn-primary btn-lg" onclick="hyderabadChange()">Hyderabad</button>
+  				</center>
+			</div>
+			<div class="pie-chart">
+				<iframe id="pie_frame1" src="/mumbai_bjp" style="height:500px; width:100%"></iframe>
+				<iframe id="pie_frame2" src="/mumbai_ncp" style="height:500px; width:100%"></iframe>
+			</div>
+		</div>
+		<div class="analysis_conclusion shown">
+				<h3>Analyzing the Influence of the Budget</h3>
+				<p>Inferring from the above graphs, it can be comprehended that the views of people from various sectors, before the interim budget, was in favor of congress due to many parameters which included the elections held in various states and the loan waiver scheme. Modi sold voters a fabulous dream, promising good governance and a dynamic economy that would create jobs for all. In reality, Modi has failed to accelerate GDP growth or create the promised jobs for all. Recent state elections reveal voters in a sour anti-incumbent mood, and in 2019, the NDA will be the incumbent. It has lost two allies, the Telugu Desam Party (TDP) and Shiv Sena.</p>
+				<p>The new budget of 2019 was designed in keeping in mind the votebank in which the major part was occupied by the middle class people. They were given several respites in this budget. But according to the graphs it seems that people are still not satiated with the government. The negative views for BJP have increased than before. Along with this, congress has lost few supporters as well but the loss was less.  
+					It seemed that BJP didnt win many hearts in the brief tenure of 5 years thus it can be inferred that #AbkiBaarModiSarkaar may change to #AbkiBaar400Paar.</p>
+				</p>
+		</div>
+		<div class="filters row">
+			
+			<div class="col-sm-7 row social-filter shown">
+				<h5 class="col-sm-12" style="text-align: center;">Filter by Post</h5>
+				<div class="col-sm-4 social_clickable" onclick="all_click()" style="padding: 0; margin: 0;">
+					<div class="div-inside" style="margin:0 4px; padding:10px;">
+						<center>
+							<i class="fas fa-globe-americas"></i>
+							<br>
+							All
+						</center>
+					</div>
+				</div>
+				<div class="col-sm-4 social_clickable" onclick="tw_click()" style="padding: 0; margin: 0;">
+					<div class="div-inside" style="margin:0 4px; padding:10px;">
+						<center>
+						<i class="fab fa-twitter"></i>
+						<br>
+						Twitter
+						</center>
+					</div> 
+				</div>
+				<div class="col-sm-4 social_clickable" onclick="bg_click()" style="padding: 0; margin: 0;">
+					<div class="div-inside" style="margin:0 4px; padding:10px;">
+						<center>
+						<i class="fas fa-rss"></i>
+						<br>
+						Blogs
+						</center>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-5 sentiment_filter shown">
+				<center>
+				<h5>Filter by Sentiment</h5>
+				<div class="sentiment-range">
+					<input type="range" min="1" max="3" value="2" class="slider" id="myRange">
+					<br>
+					<br>
+					<h6><span id="sentiment-val"></span></h6>
+				</div>
+				</center>
+			</div>
+		</div>
+		<div class="social_posts"">
+			{% for followers,name,user_url,image,retweets,influence,sentiment,date,text in tweets %}
+			<div class="post shown twitter-post {{sentiment}}">
+				<img class="fas fa-user" src="{{image}}" style="margin-right: 20px; height: 40px; width: 38px; padding:0;"></i>
+				<span style="font-size: 22px; margin-left: 0;"><a href="{{user_url}}" style="color:inherit;">{{name}}</a></span>
+				<span style="float: right;"><i class="far fa-calendar-alt" style="margin-right: 10px;"></i>{{date}}</span>
+				<br>
+				<span style="margin-top: 40px;"><i class="fab fa-twitter" style="margin-right: 10px; color: #1da1f2;"></i><a href="https://www.twitter.com/">twitter.com</a></span>
+				<span style="float: right; border: 1px solid; padding: 5px;">{{sentiment}}</span>
+				<br>
+				<br>
+				<span class="post_sub">
+					<span style="padding-right: 10px; margin-left:0;">{{followers}} followers</span>
+					<span style="opacity:0.7; margin: 0;">|</span>
+					<span style="padding-left:0 10px; margin: 0;">
+					<i class="fas fa-retweet"></i>  {{retweets}}</i>
+					<span style="opacity:0.7; margin: 0;">|</span>
+					<span style="padding-left: 10px; margin:0;">Influence Score: {{influence}}/10</span>
+				</span>
+				<p style="padding:20px 0 0 60px; color: black;">{{text}}</p>
+			</div>
+			{% endfor %}
+			{% for blog_summary, blog_title, blog_sentiment, blog_href in blogs %}
+			<div class="post shown blog-post {{blog_sentiment}}">
+				<i class="fas fa-user" style="margin-right: 20px; color:black;"></i>
+				<span style="font-size: 22px; margin-left: 0;"><a href="{{blog_href}}" style="color:inherit;">{{ blog_title }}</a></span>
+				<span style="float: right;"></span>
+				<span style="float: right; border: 1px solid; padding: 5px;">{{ blog_sentiment }}</span>
+				<p style="padding-left: 60px; color: black;">{{blog_summary}}</p>
+				
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	<!-- == jQuery Librery == -->
+    <script src="static/bootstrap/jquery-3.3.1.min.js"></script>
+    <!-- == Bootstrap js File == -->
+    <script src="static/bootstrap/bootstrap.min.js"></script>
+    <!-- Popper Library -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script type="text/javascript" src="static/custom/custom.js"></script>
+</body>
+</html>
